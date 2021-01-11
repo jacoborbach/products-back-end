@@ -1,3 +1,3 @@
-update product
-set description = $1
-where product_id = $2
+UPDATE product 
+SET description = $2 
+WHERE product_id = $1;

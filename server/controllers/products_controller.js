@@ -1,5 +1,5 @@
 module.exports = {
-    create: (req, res, next, next) => {
+    create: (req, res, next) => {
         const { name, description, price, image_url } = req.body;
         const db = req.app.get('db');
 
@@ -13,9 +13,12 @@ module.exports = {
     getOne: (req, res, next) => {
         const { id } = req.params;
         const db = req.app.get('db');
-
+        console.log(id)
         db.read_product(id)
-            .then(product => res.status(200).send(product))
+            .then(product => {
+                console.log(product)
+                res.status(200).send(product)
+            })
             .catch(err => {
                 res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });
                 console.log(err)
@@ -36,7 +39,7 @@ module.exports = {
             { description } = req.query;
         const db = req.app.get('db')
 
-        db.update_product(description, id)
+        db.update_product([id, description])
             .then(() => res.sendStatus(200))
             .catch(err => {
                 res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });

@@ -1,4 +1,5 @@
 INSERT INTO product 
 (name, description, price, image_url)
 VALUES 
-(${name}, ${description}, ${price}, ${image_url});
+($1, $2, $3, $4);
+-- (${name}, ${description}, ${price}, ${image_url});

@@ -15,10 +15,10 @@ massive({
     console.log('db connected')
 }).catch(err => console.log(err));
 
+app.post('/api/products', productsCtrl.create);
 app.get('/api/products', productsCtrl.getAll);
 app.get('/api/products/:id', productsCtrl.getOne);
 app.put('/api/products/:id', productsCtrl.update);
-app.post('/api/products', productsCtrl.create);
 app.delete('/api/products/:id', productsCtrl.delete);
 
 
